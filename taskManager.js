@@ -32,17 +32,23 @@ function createTaskManager(){
       setTimeout(() => {
         callback(tasks);
       }, 1000)
+    },
+
+    
+    getTask(){
+      return tasks;
     }
   }
+
 }
 
-const manager = createTaskManager();
-console.log(manager.addTask("Make timetable", "high"))
-console.log(manager.addTasks("Make timetable", "Assign Duties"))
-console.log(manager.listTasks())
-manager.removeTask("Make timetable")
-console.log(manager.listTasks())
+// const manager = createTaskManager();
+// console.log(manager.addTask("Make timetable", "high"))
+// console.log(manager.addTasks("Make timetable", "Assign Duties"))
+// console.log(manager.listTasks())
+// manager.removeTask("Make timetable")
+// console.log(manager.listTasks())
 
-manager.saveTasks(() => {
-  console.log(`TASKS SAVED`)
-})
+// manager.saveTasks(() => {
+//   console.log(`TASKS SAVED`)
+// })

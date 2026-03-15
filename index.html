@@ -8,10 +8,71 @@
     <h1>Task Manager</h1>
     <input type="text" id="taskInput" placeholder="New Task">
     <button id="addBtn">Add Task</button>
-    <div id="taskList"></div>
+    <div id="taskList">
+
+    </div>
     <script src="taskManager.js"></script>
     <script>
-        // DOM logic here
+        const manager = createTaskManager();
+        const taskInput = document.getElementById('taskInput');
+        const addBtn = document.getElementById('addBtn');
+        const taskList = document.getElementById('taskList');
+
+        //creating new paragraphs that each task will be pushed to\
+        
+
+        addBtn.addEventListener('click', function(){
+            manager.addTask(taskInput.value)
+            // taskList.textContent = manager.listTasks()
+
+            taskList.innerHTML = ""
+            for(let i = 0; i < manager.getTask().length; i++){
+                const newTask = document.createElement(`p`)
+                newTask.textContent = manager.getTask()[i];
+
+                const doneBtn = document.createElement(`button`)
+                doneBtn.textContent = "✅"
+
+                let isDone = false;
+                doneBtn.onclick = function(){
+                    if(!isDone){
+                        newTask.style.color = "green";
+                        newTask.style.textDecoration = "line-through";
+
+                        isDone = true;
+                    } else {
+                        newTask.style.textDecoration = "";
+                        newTask.style.color = "";
+
+                        isDone = false;
+                    }
+                }
+
+                const deleteBtn = document.createElement(`button`);
+                deleteBtn.textContent = "❌";
+
+                const taskName = manager.getTask()[i]
+                newTask.textContent = taskName;
+
+                deleteBtn.onclick = function(){
+                    newTask.remove();
+                    // manager.removeTask(manager.getTask()[i];
+                    manager.removeTask(taskName);
+
+                }
+                // newTask.createElement("button")
+
+
+                taskList.appendChild(newTask)
+                newTask.appendChild(doneBtn)
+                newTask.appendChild(deleteBtn)
+
+            }
+            taskInput.value = "";
+
+        })
+
+        
     </script>
 </body>
 </html>
